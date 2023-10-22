@@ -1,35 +1,33 @@
-import "./App.css";
+import { Link, Route, Routes } from 'react-router-dom';
+import Dogs from './pages/Dogs/Dogs';
+import Form from './pages/Form/Form';
+
+function Home() {
+  return (
+    <div className="flex flex-col items-center">
+      <h1>Hello! 👋</h1>
+      <p>Where should we go?</p>
+
+      <ul className="pt-4">
+        <ol>
+          <Link to="form">Form page</Link>
+        </ol>
+        <ol>
+          <Link to="dogs">Dogs page</Link>
+        </ol>
+      </ul>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <form>
-      <div>
-        <label htmlFor="email">Email address</label>
-        <input
-          type="email"
-          id="email"
-          aria-describedby="email-help"
-          placeholder="Enter email"
-        />
-        <small id="email-help">It's safe with us. We hate spam!</small>
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="Password" />
-      </div>
-      <div>
-        <label htmlFor="terms">
-          <input type="checkbox" id="terms" />
-          <span>
-            I accept the{" "}
-            <a href="https://www.example.com"> terms and conditions</a>
-          </span>
-        </label>
-      </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+    <Routes>
+      <Route index element={<Home />} />
+      <Route path="/form" element={<Form />} />
+      <Route path="/form/success" element={<p>Success!</p>} />
+      <Route path="/dogs" element={<Dogs />} />
+    </Routes>
   );
 }
 
