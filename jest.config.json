@@ -1,5 +1,6 @@
 {
   "preset": "ts-jest",
   "testEnvironment": "jsdom",
-  "setupFilesAfterEnv": ["<rootDir>/tests/setup.ts"]
+  "setupFilesAfterEnv": ["<rootDir>/tests/setup.ts"],
+  "testMatch": ["<rootDir>/src/**/?(*.)+(spec|test).+(ts|tsx|js|jsx)"]
 }
