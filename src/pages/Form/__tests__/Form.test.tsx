@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
 import Form from '../Form';
@@ -71,9 +71,11 @@ describe('Form', () => {
     });
     expect(spinner).toBeInTheDocument();
 
+    await waitFor(() => expect(spinner).not.toBeInTheDocument());
+
     // Using findBy instead of getBy again
     const message = await screen.findByRole('heading', {
-      name: /you are logged in!/i,
+      name: /success/i,
     });
     expect(message).toBeInTheDocument();
 
@@ -90,7 +92,7 @@ describe('Form', () => {
       }
 
       // Helper function to check if the node has the text that we are looking for
-      const hasText = (node: Element): boolean => node.textContent === 'Thanks for registering';
+      const hasText = (node: Element): boolean => node.textContent === 'Thank you for registering';
 
       const nodeHasText = node ? hasText(node) : false;
 
