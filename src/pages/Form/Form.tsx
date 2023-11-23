@@ -3,33 +3,50 @@ import Spinner from './components/Spinner';
 
 function Form() {
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   if (loading) {
     return <Spinner />;
   }
 
+  if (success) {
+    return (
+      <>
+        <h1>Success!</h1>
+        <span>
+          Thank <b>you</b> for registering
+        </span>
+        <button type="button" onClick={() => setSuccess(false)}>
+          Go back
+        </button>
+      </>
+    );
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    e.persist();
+
+    setLoading(true);
+
+    if (e.target instanceof HTMLFormElement) {
+      const formData = new FormData(e.target);
+      const form = {
+        email: formData.get('email') ?? '',
+        password: formData.get('password') ?? '',
+      };
+
+      if (form.email && form.password) {
+        setTimeout(() => {
+          setLoading(false);
+          setSuccess(true);
+        }, 1000);
+      }
+    }
+  }
+
   return (
-    <form
-      className="flex flex-col gap-4"
-      action="/form/success"
-      onSubmit={(e) => {
-        e.preventDefault();
-
-        if (e.target instanceof HTMLFormElement) {
-          setLoading(true);
-
-          const formData = new FormData(e.target);
-          const form = {
-            email: formData.get('email') ?? '',
-            password: formData.get('password') ?? '',
-          };
-
-          if (form.email && form.password) {
-            setLoading(false);
-            e.target.submit();
-          }
-        }
-      }}>
+    <form className="flex flex-col gap-4" action="/form/success" onSubmit={handleSubmit}>
       <label htmlFor="email" className="items-start">
         Email address
         <input

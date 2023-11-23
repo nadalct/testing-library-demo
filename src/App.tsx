@@ -25,7 +25,6 @@ function App() {
     <Routes>
       <Route index element={<Home />} />
       <Route path="/form" element={<Form />} />
-      <Route path="/form/success" element={<p>Success!</p>} />
       <Route path="/dogs" element={<Dogs />} />
     </Routes>
   );
