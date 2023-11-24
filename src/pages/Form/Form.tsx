@@ -46,7 +46,7 @@ function Form() {
   }
 
   return (
-    <form className="flex flex-col gap-4" action="/form/success" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
       <label htmlFor="email" className="items-start">
         Email address
         <input
