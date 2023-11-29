@@ -23,25 +23,23 @@ function Form() {
     );
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     e.persist();
 
     setLoading(true);
 
-    if (e.target instanceof HTMLFormElement) {
-      const formData = new FormData(e.target);
-      const form = {
-        email: formData.get('email') ?? '',
-        password: formData.get('password') ?? '',
-      };
+    const formData = new FormData(e.target);
+    const form = {
+      email: formData.get('email') ?? '',
+      password: formData.get('password') ?? '',
+    };
 
-      if (form.email && form.password) {
-        setTimeout(() => {
-          setLoading(false);
-          setSuccess(true);
-        }, 1000);
-      }
+    if (form.email && form.password) {
+      setTimeout(() => {
+        setLoading(false);
+        setSuccess(true);
+      }, 1000);
     }
   }
 

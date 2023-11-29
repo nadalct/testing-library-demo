@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import getDogImage from './api/getDogImage';
 import { getAllBreeds, getImageByBreed } from './api/getDogByBreed';
@@ -47,10 +47,10 @@ function Dogs() {
   return (
     <form
       className="flex flex-col items-center"
-      onSubmit={(e) => {
+      onSubmit={(e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const form = e.target as HTMLFormElement;
+        const form = e.target;
         const breed = form.breed.value;
 
         getImageByBreed(breed).then((url) => {

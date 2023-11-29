@@ -1,11 +1,11 @@
-async function getAllBreeds(): Promise<Record<string, string[]>> {
+async function getAllBreeds(): Promise<Record<string, string[]> | null> {
   try {
     const response = await fetch('https://dog.ceo/api/breeds/list/all');
     const data = await response.json();
     return data.message;
   } catch (e) {
     console.error('Something went wrong retrieving the breeds', e);
-    return {};
+    return null;
   }
 }
 
